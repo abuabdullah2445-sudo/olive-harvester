@@ -20,7 +20,7 @@ app.get('/status', (req, res) => {
   res.json({ status: "online", project: "Olive Harvester", version: "1.2.0_optimized" });
 });
 
-// الصفحة الرئيسية المرئية (تصميم حمرا إلكترونيكس)
+// الصفحة الرئيسية المرئية والتفاعلية
 app.get('/', (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -38,10 +38,11 @@ app.get('/', (req, res) => {
             p { color: #b3cbb4; font-size: 16px; line-height: 1.6; padding: 0 10px; }
             .orange-text { color: #fca311; font-weight: bold; }
             .buttons-container { display: flex; flex-direction: column; gap: 12px; margin-top: 30px; padding: 0 10px; }
-            .btn { padding: 14px; border-radius: 25px; font-size: 16px; font-weight: bold; text-decoration: none; display: block; border: none; cursor: pointer; }
+            .btn { padding: 14px; border-radius: 25px; font-size: 16px; font-weight: bold; text-decoration: none; display: block; border: none; cursor: pointer; text-align: center; }
             .btn-green { background-color: #3b7a24; color: #ffffff; }
             .btn-gold { background-color: #5c4d11; color: #fca311; border: 1px solid #fca311; }
             .btn-whatsapp { background-color: #1b4d22; color: #8ee35d; border: 1px solid #3b7a24; }
+            .dialogue-box { background-color: #172412; border: 1px dashed #8ee35d; padding: 15px; margin-top: 20px; border-radius: 10px; display: none; text-align: right; }
         </style>
     </head>
     <body>
@@ -55,13 +56,29 @@ app.get('/', (req, res) => {
         <h3 style="color:#fca311; margin:0;">حمرا إلكترونيكس للتجارة العامة تعلن عن:</h3>
         <h1>وصول فراطة الزيتون الأصلية اليونانية الحديثة من <span class="highlight">إنجليس</span></h1>
 
-        <p>الفراطة <span class="highlight">متعددة السرعات</span>، بتساعدك توفّر الجهد والوقت... وتخفّف العمال. وتعتبر من أحدث فراطات الزيتون المتوفرة بالبلاد؛ قوة جبارة، خفة استثنائية، وإنتاجية تصل لـ <span class="orange-text">250 كغ/ساعة</span> مع <span class="highlight">أضرار صفر</span> أثناء القطاف!</p>
+        <p>الفراطة <span class="highlight">metعددة السرعات</span>، بتساعدك توفّر الجهد والوقت... وتخفّف العمال. قوة جبارة، وإنتاجية تصل لـ <span class="orange-text">250 كغ/ساعة</span>!</p>
 
         <div class="buttons-container">
-            <button class="btn btn-green">◀ المعاينة</button>
-            <button class="btn btn-gold">📥 سحب الفيديو</button>
-            <button class="btn btn-whatsapp">💬 واتساب</button>
+            <button class="btn btn-green" onclick="showDialogue()">◀ عرض حوار الشيخ أبو قاسم</button>
+            <button class="btn btn-gold" onclick="alert('جاري تجهيز رابط سحب فيديو الإعلان للفراطة اليونانية...')">📥 سحب الفيديو</button>
+            <a href="https://wa.me" target="_blank" class="btn btn-whatsapp">💬 تواصل معنا عبر واتساب</a>
         </div>
+
+        <div id="dialogueBox" class="dialogue-box">
+            <p><strong>المهندس:</strong> أهلاً بك يا شيخ أبو قاسم، تم تجهيز وتعديل برمجيات فراطة الزيتون اليونانية الجديدة بأعلى كفاءة لتسريع العمل وتوفير الطاقة.</p>
+            <p><strong>الشيخ أبو قاسم:</strong> بارك الله فيكم يا بني، هذا ما كنا ننتظره لتسهيل موسم قطاف الزيتون وتخفيف الجهد الإجمالي للعمال إلكترونياً.</p>
+        </div>
+
+        <script>
+            function showDialogue() {
+                var box = document.getElementById("dialogueBox");
+                if (box.style.display === "none" || box.style.display === "") {
+                    box.style.display = "block";
+                } else {
+                    box.style.display = "none";
+                }
+            }
+        </script>
     </body>
     </html>
   `);
